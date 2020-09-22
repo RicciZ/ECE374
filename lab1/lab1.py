@@ -1,4 +1,5 @@
 class Set:
+    # a) create a set
     def __init__(self,contents=[],loadMax=0.75,loadMin=0.25):
         self.items = [None] * 20
         self.numItems = 0
@@ -15,12 +16,14 @@ class Set:
             index = (index + 1) % len(self.items)
         return False
     
+    # b) iterate over sets
     def __iter__(self):
         for e in self.items:
             if e != None and type(e) != Set.__Placeholder:
                 yield e
 
     ## punlic functions
+    # c) add
     def add(self,item):
         if Set.__add(item,self.items):
             self.numItems += 1
@@ -31,6 +34,7 @@ class Set:
         for e in items:
             self.add(e)
 
+    # d) remove
     def remove(self,item):
         if Set.__remove(item,self.items):
             self.numItems -= 1
@@ -43,19 +47,22 @@ class Set:
         for e in items:
             self.remove(e)
 
+    # e) delete -  remove an item from a set if it is present in the set
     def delete(self,item):
         if Set.__remove(item,self.items):
             self.numItems -= 1
             if self.numItems / len(self.items) <= self.loadMin:
                 self.items = Set.__rehash(self.items,[None]*(len(self.items)//2))
 
+    # f) intersection
     def intersect(self,other):
         res = []
         for i in self:
             if i in other:
                 res.append(i)
         return Set(res)
-
+    
+    # g) union
     def union(self,other):
         res = []
         for i in self:
@@ -65,6 +72,7 @@ class Set:
                 res.append(i)
         return Set(res)
 
+    # h) difference
     def differ(self,other):
         res = []
         for i in self:
@@ -72,26 +80,31 @@ class Set:
                 res.append(i)
         return Set(res)
 
+    # i) check subset
     def subsetof(self,other):
         for i in self:
             if i not in other:
                 return False
         return True
 
+    # j) length
     def length(self):
         return self.numItems
-
+    
+    # k) check if two given sets have no elements in common
     def noCommonWith(self,other):
         for i in self:
             if i in other:
                 return False
         return True
 
+    # l) remove intersection
     def removeIntersection(self,other):
         for i in self:
             if i in other:
                 self.remove(i)
     
+    # help to show the output
     def print(self):
         for e in self:
             print(e,end=' ')
@@ -140,9 +153,12 @@ class Set:
 
 
 # a) create a set
+print("a)")
 s = Set([i*2 for i in range(10)])
+s.print()
 
 # b) iterate over sets
+print("b)")
 for i in s:
     print(i,end=' ')
 print()
