@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{float}
+\usepackage{amssymb}
 
 \geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
 
@@ -17,16 +18,56 @@
 \begin{document}
 \setlength{\parindent}{0pt}
 \maketitle
-Ex1
-
+\section*{Q1}
+\subsection*{Ex1}
 1) 1*(01*01*)* \\
 2) 0*10*(10*10*)* \\
 3) 1*(01*01*)* + 0*10*(10*10*)* \\
 4) 0(00+11)*(01+10)((00+11)+(01+10)(00+11)*(01+10))* + 1((00+11)+(01+10)(00+11)*(01+10))* \\
 
-Ex2
-
+\subsection*{Ex2}
 5) ((a+b)(a+b)(a+b))* \\
 6) (a+b)*+(a+c)*+(b+c)* \\
 7) b*aa*bb*aa*b(bb*a*+aa*) \\
+
+\section*{Q2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{Q2.png}
+\end{figure}
+
+\section*{Q3}
+\subsection*{1. $L=\{a^p|p\ prime\ number\}$}
+proof:\\
+fooling set F=a* \\
+$\forall x=a^i,y=a^j\in F,i\not=j$, 
+assume $i \leq j$ \\
+let the prime number $p \geq i$ \\
+$p+0(j-i)=p$ is prime \\
+$p+p(j-i)\geq p$ is not prime \\
+$\therefore \exists integer\ k\in (0,p]\ s.t.$ \\
+$p+(k-1)(j-i)$ is prime \\
+$p+k(j-i)$ is not prime \\
+let $z=a^{p+(k-1)j-ki}$ \\
+$xz=a^{p+(k-1)(j-i)}\in L$ \\
+$yz=a^{p+k(j-i)}\notin L$ \\
+$\therefore$ F is the fooling set of L \\
+$\because$ F is infinite \\
+$\therefore$ L is not regular
+
+\subsection*{2. $L=\{a^{n^2}|n \geq 1\}$}
+proof:\\
+fooling set $F=L=\{a^{n^2}|n \geq 1\}$\\
+$\forall x=a^{i^2},y=a^{j^2}\in F,i\not=j$, assume $i \leq j$\\
+let $z=a^{2i+1}$\\
+$xz=a^{i^2+2i+1}=a^{(i+1)^2}\in L$\\
+$yz=a^{j^2+2i+1}$\\
+the next square number after $j^2$ is $(j+1)^2=j^2+2j+1>j^2+2i+1>j^2$\\
+$\therefore j^2+2i+1$ is not a square number \\
+$\therefore yz \notin L$\\
+$\therefore$ F is the fooling set of L \\
+$\because$ F is infinite \\
+$\therefore$ L is not regular
+
+
 \end{document}
