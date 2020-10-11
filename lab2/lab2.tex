@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+
+% \geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab2: Deterministic Finite-state Automata}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Sept. $28^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+Question 1: All strings containing the substring \textbf{aaa}.
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Q1.png}
+    \caption{All strings containing the substring \textbf{aaa}.}
+\end{figure}
+q0: Start state. No \textbf{a} so far, or \textbf{b} interrupts the continuous \textbf{a}s. \\
+q1: There exists substring \textbf{a}. \\
+q2: There exists substring \textbf{aa}. \\
+q3: Final state. There exists substring \textbf{aaa}. \\
+
+Question2: All strings not containing the substring \textbf{aaa}.
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Q2.png}
+    \caption{All strings not containing the substring \textbf{aaa}.}
+\end{figure}
+q0: Start state and final state. No \textbf{a} so far, or \textbf{b} interrupts the continuous \textbf{a}s. \\
+q1: Final state. There exists substring \textbf{a}. \\
+q2: Final state. There exists substring \textbf{aa}. \\
+q3: There exists substring \textbf{aaa}. Already failed no matter what comes next. \\
+
+Question3: All strings in which every run of \textbf{a}s has length at least 3.
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Q3.png}
+    \caption{All strings in which every run of \textbf{a}s has length at least 3.}
+\end{figure}
+q0: Start state and final state. No \textbf{a} so far, or \textbf{b} interrupts the continuous 3 \textbf{a}s. \\
+q1: There exists substring \textbf{a}. \\
+q2: There exists substring \textbf{aa}. \\
+q3: Final state. Every run of \textbf{a}s has length at least 3. \\
+q4: There exists substring \textbf{a} or \textbf{aa}. Thus, it has already failed no matter what comes next. \\
+
+Question4: All strings in which all the \textbf{b}s appear before any substring \textbf{aaa}.
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Q4.png}
+    \caption{All strings in which all the \textbf{b}s appear before any substring \textbf{aaa}.}
+\end{figure}
+q0: Start state and final state. No \textbf{a} so far or \textbf{b} interrupts \textbf{aaa}. \\
+q1: Final state. There exists substring \textbf{b}(s) with \textbf{a} after it. \\
+q2: Final state. There exists substring \textbf{b}(s) with \textbf{aa} after it. \\
+q3: Final state. There exists substring \textbf{b}(s) with \textbf{aaa} after it. \\
+q4: There exists substring \textbf{b}(s) after \textbf{aaa}. Therefore, it has already failed no matter what comes next. \\
+
+Question5: All strings containing at least three \textbf{a}s.
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Q5.png}
+    \caption{All strings containing at least three \textbf{a}s.}
+\end{figure}
+q0: Start state. No \textbf{a} so far. \\
+q1: One \textbf{a} so far. \\
+q2: Two \textbf{a}s so far. \\
+q3: Final state. There exists three or more \textbf{a}s in the string. It has already succeeded no matter what comes next. \\
+
+Question6: Every string except \textbf{aaa}.
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Q6.png}
+    \caption{Every string except \textbf{aaa}.}
+\end{figure}
+q0: Start state and final state. Nothing so far. \\
+q1: Final state. \textbf{a}. \\
+q2: Final state. \textbf{aa}. \\
+q3: \textbf{aaa}. \\
+q4: \textbf{b} or \textbf{aaaa} occurs in the string so the string is not \textbf{aaa}. It has already succeeded no matter what comes next.
+\end{document}
