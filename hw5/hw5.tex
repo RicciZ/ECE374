@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{pythonhighlight}
+
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Homework5}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Oct. $25^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\section*{1.2-1}
+When we try to book an apartment in airbnb, the app will provide plenty of information based on our commands. We can sort the result according to their prices or expected positions where sorting algorithms and graphs are involved or we can filter the result where tags and hash are involved. 
+\section*{1.2-2}
+\begin{gather*}
+    8n^2 < 64nlgn \\
+    n < 8lgn \\
+    43 < 8lg43 \approx 43.4 \\
+    44 > 8lg44 \approx 43.6 \\
+    \therefore n = 2,3,\cdots,43
+\end{gather*}
+
+\section*{1.2-3}
+\begin{gather*}
+    100n^2 < 2^n \\
+    n=15, 22500 < 32768 \\
+    n=14, 19600 < 16384 \\
+    \therefore n=15
+\end{gather*}
+
+\section*{2.1-1}
+The input is $A = [31,41,59,26,41,58]$. \\
+
+In the $1st$ loop, it checks the numbers before the $2nd$ element 41 one by one in a loop and finds that 41 is just in its right place. \\
+A becomes [31,41,59,26,41,58]. \\
+
+In the $2st$ loop, it checks the numbers before the $3rd$ element 59 one by one in a loop and finds that 59 is just in its right place. \\
+A becomes [31,41,59,26,41,58]. \\
+
+In the $3rd$ loop, it checks the numbers before the $4th$ element 26 one by one in a loop, set them back if they are larger and finally insert 26 to the $1st$ place where the loop ends. \\
+A becomes [26,31,41,59,41,58]. \\
+
+In the $4th$ loop, it checks the numbers before the $5th$ element 26 one by one in a loop, set them back if they are larger and finally insert 26 to the $4th$ place where the loop ends. \\
+A becomes [26,31,41,41,59,58]. \\
+
+In the $5rd$ loop, it checks the numbers before the $6th$ element 26 one by one in a loop, set them back if they are larger and finally insert 26 to the $5th$ place where the loop ends. \\
+A becomes [26,31,41,41,58,59].
+
+\section*{2.1-2}
+New insertion sort which sort the list into nonincreasing order.
+\inputpython{hw5.py}{1}{8}
+\section*{2.1-3}
+\inputpython{hw5.py}{10}{14}
+loop invariant: The first i-1 elements (vec[0],...,vec[i-1]) are not the value v. \\
+
+Initialization: Return NIL if the list is empty. Or before the first loop iteration, there is no elements which shows that the loop invariant holds prior to the first iteration of the loop. \\
+
+Maintenance: The first i-1 elements are not the value v. Thus, we will move on to check the i-th element. \\
+
+Termination: If the i-th element is the value v, the function return the index i and terminate. Or if the loop terminates when $i>len(vec)=n$, which means $i=n+1$ and first $i-1=n$ elements are not the value v, i.e. the value v is not in the list so return NIL.
+
+\section*{2.2-1}
+$\Theta(\frac{n^3}{1000}-100n^2-100n+3)=\Theta(n^3)$
+\section*{2.2-2}
+\inputpython{hw5.py}{16}{22}
+loop invariant: The first (i-1) elements are the smallest (i-1) elements in the whole list. \\
+
+It only needs to run for the first n-1 elements because if the first n-1 smallest elements are sorted, the rest one must be the largest and be put at the end of the list. \\
+
+best-case: $\Theta(n+(n-1)+\cdots+1)=\Theta(\frac{n^2+n}{2})=\Theta(n^2)$ \\
+
+worst-case: $\Theta(n+(n-1)+\cdots+1)=\Theta(\frac{n^2+n}{2})=\Theta(n^2)$
+
+\section*{2.3-1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{merge_tree.png}
+    \caption{merge sort}
+\end{figure}
+\section*{2.3-2}
+\inputpython{hw5.py}{24}{40}
+
+\section*{1-1}
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+    \hline
+               & 1 second & 1 minute  & 1 hour    & 1 day       & 1 month      & 1 year        & 1 century     \\ \hline
+    lgn        & $2^{1e6}$  & $2^{6e7}$   & $2^{3.6e9}$ & $2^{8.64e10}$ & $2^{2.592e12}$ & $2^{3.1536e13}$ & $2^{3.1536e15}$ \\ \hline
+    $\sqrt{n}$ & 1e12     & 3.6e15    & 1.296e19  & 7.46496e21  & 6.718464e24  & 9.94519296e26 & 9.94519296e30 \\ \hline
+    n          & 1e6      & 6e7       & 3.6e9     & 8.64e10     & 2.592e12     & 3.1536e13     & 3.1536e15     \\ \hline
+    nlgn       & 62746    & 2.80142e6 & 1.33378e8 & 2.75515e9   & 7.18709e10   & 7.97634e11    & 6.8611e13     \\ \hline
+    $n^2$      & 1000     & 7745      & 60000     & 293928      & 1609968      & 5615692       & 56156922      \\ \hline
+    $n^3$      & 99       & 391       & 1532      & 4420        & 13736        & 31593         & 146645        \\ \hline
+    $2^n$      & 19       & 25        & 31        & 36          & 41           & 44            & 51            \\ \hline
+    n!         & 9        & 11        & 12        & 13          & 15           & 16            & 17            \\ \hline
+    \end{tabular}
+    \end{table}
+
+\end{document}
