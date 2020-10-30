@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage{amsmath}
+
+% \geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab4: Divide and Conquer}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Oct. $27^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\pagestyle{empty}
+\section{Introduction}
+In this lab, we will do two examples that show the Divide and Conquer idea, binary search and the Strassen algorithm. In both algorithms, a problem is divided into multiple smaller and easier problems but not affecting the final result. 
+
+\section{Python Code for Binary Search}
+\inputpython{lab4.py}{3}{12}
+To find an element in a sorted list, each time we only check the element in the middle. If the element we want is smaller, then it must be ahead of the middle element. Otherwise, it must be behind the middle element. In this way, we can get rid of half of the elements for each round. Thus, the time complexity for this binary search is O(lgn).
+
+\section{Test Example for Binary Search}
+\inputpython{lab4.py}{53}{58}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{binary_search_test.png}
+    \caption{binary search test}
+\end{figure}
+In this test example, we first randomly generate 25 numbers, sort them using the merge sort we learned in the previous lab. To test the binary search, we run the function to search for each element in the list and one element that is definitely not in the list. The outputs are 0 to 24 and a -1 which is exactly what we expected.
+
+
+\section{Python Code for Strassen Algorithm}
+\inputpython{lab4.py}{62}{114}
+Instead of doing multiplication one element by one element in the original matrix, Strassen algorithm divide the matrix into four pieces. With calculations to the matrix blocks, we can obtain four new matrix blocks and merge them to the result. These calculations only involve 7 matrix multiplications which is one less than 8 (do the multiplication directly), consequently, reduce the time complexity from $O(n^{lg8})=O(n^3)$ to $O(n^{lg7})=O(n^{2.807})$
+
+\section{Test Example for Strassen Algorithm}
+\inputpython{lab4.py}{117}{123}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{Strassen_test.png}
+    \caption{Strassen algorithm test}
+\end{figure}
+As this algorithm only takes $n \times n$ matrices where $n=2^x,x \in N$, so for the test, we randomly generate two $8 \times 8$ matrices A and B. Use numpy and Strassen algorithm to calculate matrix multiplication AB and get two results. If the algorithm works well, the answer should be the same as what we got from numpy. Due to the floating numbers' error, we use absolute difference to check if they are the same. As we can see, the difference is smaller than 0.0000001. From that, we conclude the Strassen algorithm we derive works well.
+
+
+\end{document}
