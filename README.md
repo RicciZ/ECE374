@@ -19,3 +19,17 @@
 - merge sort
 - insertion sort
 - Timsort
+
+### lab4
+- binary search
+- Strassen algorithm (matrix multiplication)
+
+### hw5
+- time complexity analysis
+
+### hw6
+- quicksort
+- probability
+
+### lab5
+- counting sort
