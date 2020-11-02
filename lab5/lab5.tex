@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage{amsmath}
+
+% \geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab5: Counting Sort}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Nov. $2^{nd}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\pagestyle{empty}
+\section{Introduction}
+In this lab, we will implement counting sort that accepts negative numbers. Counting sort is a sorting algorithm with time complexity O(k+n).
+
+\section{Python Code for Counting Sort}
+\inputpython{lab5.py}{3}{17}
+minx is the minimum number in A. \\
+maxx is the maximum number in A. \\
+k is the number of buckets needed. I use maxx-minx+1 to normalize these numbers and minimize the buckets needed. \\
+First, create k empty buckets, C. Then, go through A, put the numbers in A into buckets in C and record the numbers of the numbers in each buckets. Finally, take the numbers out in order and append them to B. B is the sorted array.
+
+\section{Test Example for Counting Sort}
+\inputpython{lab5.py}{19}{22}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{test.png}
+    \caption{counting sort test result}
+\end{figure}
+Here I generate 20 random numbers from -10 to 10, sort them with the counting\_sort function I developed and output them to see the results.
+
+\section{Time Complexity Analysis}
+The first loop is O(k). The second loop is O(n). The third loop consists of two loops. The outer loop is O(k). The inner loop iterates C[i]. C contains the number of numbers from A so the sum of C[i] is n. Thus, the inner loop iterates n times in total. Therefore, the third loop is O(k+n). In all, the time complexity of this counting sort is O(k+n). 
+
+\end{document}
