@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{pythonhighlight}
+
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Homework7}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Nov. $15^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+
+\section*{11.1-1}
+Traverse the direct-address table T, compare each one of the element and find the largest one. The worst-case time complexity is O(m) where m is the length of T.
+
+\section*{11.1-2}
+\inputpython{hw7.py}{31}{47}
+The i-th slot corresponds to the key i. If the bit in the i-th slot is 1, it means that there is an element i, 0 otherwise. As the codes shown above, the dictionary
+operations run in O(1) time.
+
+\section*{11.2-1}
+let X denotes collide or not, Y denotes the total number of collision. Therefore, $Y=\sum_{k\not=l}X$ and
+$
+    E[Y]=E[\sum_{k\not=l}X]
+    =\sum_{k\not=l}E[X]
+    =\sum_{k\not=l}\dfrac{1}{m}
+    =\binom{n}{2}\dfrac{1}{m}
+    =\dfrac{n(n-1)}{2}\dfrac{1}{m}
+    =\dfrac{n(n-1)}{2m}
+$
+
+\section*{11.2-3}
+For insertions and deletions, the time complexity does not change, still $\Theta(1+\alpha)$, one for computing $h(k)$, $\alpha$ for rearrange the items after. For successful and unsuccessful searches, the time complexity becomes $\Theta(1+lg(\alpha))$ because the time complexity for searching in a sorted list is $O(lg(n))$.
+
+\section*{11.4-1}
+\inputpython{hw7.py}{49}{87}
+$h'(k)=k$, $m=11$, $c_1=1$, $c_2=3$, $h_1(k)=k$, $h_2(k)=1+(k\mod{(m-1)})$\\
+Insert 10, 22, 31, 4, 15, 28, 17, 88, 59.\\
+
+Linear probing: $h(k,i)=(h'(k)+i)\mod{m}=(k+i)\mod{11}$\\
+The result is: [22, 88, None, None, 4, 15, 28, 17, 59, 31, 10]\\
+
+Quadratic probing: $h(k,i)=(h'(k)+c_1i+c_2i^2)\mod{m}=(k+i+3i^2)\mod{11}$\\
+The result is: [22, None, 88, 17, 4, None, 28, 59, 15, 31, 10]\\
+
+Double hashing: $h(k,i)=(h_1(k)+ih_2(k))\mod{m}=(k+i(1+(k\mod{10})))\mod{11}$\\
+The result is: [22, None, 59, 17, 4, 15, 28, 88, None, 31, 10]
+
+\section*{11.4-2}
+\begin{python}
+Hash-Deletion(T,k)
+i = 0
+repeat
+    j = h(k,i)
+    if T[j] == k
+        T[j] = DELETED
+        return j
+    else i = i + 1
+until i == m or T[j] == NIL
+error "no k found"
+\end{python}
+\begin{python}
+Modified-Hash-Insert(T,k)
+i = 0
+repeat
+    j = h(k,i)
+    if T[j] == NIL or T[j] == DELETED
+        T[j] = k
+        return j
+    else i = i + 1
+until i == m
+error "hash table overflow"
+\end{python}
+\end{document}
