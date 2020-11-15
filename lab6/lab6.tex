@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage{amsmath}
+
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab6: Randomized Selection}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Nov. $10^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\pagestyle{empty}
+\section{Introduction}
+In this lab, we will implement and analyze the randomized selection algorithm.
+
+\section{Python Code for Randomized Selection}
+\inputpython{lab6.py}{3}{25}
+This algorithm uses recursion to find the $i^{th}$ largest number in the array A. The principle here is similar to the randomized quick sort. It uses randomized partition to first pick an element and place all the elements smaller before it and all the elements larger after it. In this way, we know this element is the $j^{th}$ largest number in this array if there are the return value is j. To find the $i^{th}$ largest number, we recursively do the randomized partition until $j=i$.
+
+\section{Test Example for Randomized Selection}
+\inputpython{lab6.py}{27}{33}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{test.png}
+    \caption{randomized selection test result}
+\end{figure}
+
+\section{Time Complexity Analysis}
+Assume the time it takes is T(n) and $T(n)\leq cn$ for sufficiently large c.
+\begin{align*}
+T(n)&\leq \frac{1}{n}\sum_{k=0}^{n-1}T(max(k,n-k-1))+\Theta(n) \ \text{(max(k,n-k-1) means falls in larger side of partition)} \\
+&\leq \frac{2}{n}\sum_{k=\frac{n}{2}}^{n-1}T(k)+\Theta(n) \ \text{(before $\frac{2}{n}$, n-k-1 is larger and after $\frac{2}{n}$ k is larger and they are symmetric)} \\
+&\leq \frac{2}{n}\sum_{k=\frac{n}{2}}^{n-1}ck+\Theta(n) \ \text{(assume $T(n)\leq cn$ for sufficiently large c)} \\
+&=\frac{2c}{n}(\sum_{k=1}^{n-1}k-\sum_{k=1}^{\frac{n}{2}-1}k)+\Theta(n) \\
+&=\frac{2c}{n}(\frac{1}{2}(n-1)n-\frac{1}{2}(\frac{n}{2}-1)\frac{n}{2})+\Theta(n) \\
+&=c(n-1)-\frac{c}{2}(\frac{n}{2}-1)+\Theta(n) \\
+&=cn-(\frac{cn}{4}+\frac{c}{2}-\Theta(n)) \\
+&\leq cn \ \text{(this is what we assume and set out to prove)}
+\end{align*}
+Therefore, the average time complexity of this algorithm is O(n).
+
+
+\end{document}
