@@ -33,3 +33,9 @@
 
 ### lab5
 - counting sort
+
+### lab6
+- randomized seletion
+
+### hw7
+- hash
