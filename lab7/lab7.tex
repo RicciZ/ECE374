@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage{amsmath}
+
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab7: Hash Table Insertion}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Nov. $16^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\pagestyle{empty}
+\section{Introduction}
+In this lab, we will implement and analyze the hash algorithm with quadratic probing and double hashing.
+
+\section{Python Code for Hash}
+\inputpython{lab7.py}{1}{19}
+Each function implements a hash algorithm. We take $h'(k)=k$, $m=21$, $c_1=1$, $c_2=3$, $h_1(k)=k$, $h_2(k)=1+(k\mod{(m-1)})$. The first one is hash with quadratic probing $h(k,i)=(h'(k)+c_1i+c_2i^2)\mod{m}=(k+i+3i^2)\mod{11}$ and the second one is hash with double hashing $h(k,i)=(h_1(k)+ih_2(k))\mod{m}=(k+i(1+(k\mod{20})))\mod{21}$.
+
+
+\section{Test Example for Hash}
+\inputpython{lab7.py}{21}{32}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{test.png}
+    \caption{hash insert test result}
+\end{figure}
+
+\section{Time Complexity Analysis}
+Both the insertion with quadratic probing and double hashing have the time complexity of $\Theta(1+\alpha)$ where $\alpha=\frac{n}{m}$.
+
+
+\end{document}
