@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage{amsmath}
+
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab8: Skip List}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Nov. $30^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\pagestyle{empty}
+\section{Introduction}
+In this lab, we will implement and test some functions of the skip list.
+
+\section{Python Code for Skip List}
+\inputpython{lab8.py}{1}{84}
+Skip list is a data structure that stores the elements in a bunch of linked lists. The linking is decided randomly which provide a shortcut for searching. The core functions of the skip list is insert, search and delete. To search an element, we start from the top level with the shortest path and then go down. To insert an element, we first find its place using the similar routine of searching and then insert it or replace it when the key is already there. If we insert a new node, we have to update its linking by first determine its hight and then connect it with the previous node and the next node corresponding to the hight. Deletion is similar to the insert. We first find the element, delete it and update the linking.
+
+\section{Test Example for Skip List}
+\inputpython{lab8.py}{86}{102}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{test.png}
+    \caption{Skip list test result.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm]{test_search.png}
+    \caption{Skip list search test result.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16cm]{test_delete.png}
+    \caption{Skip list deletion test result.}
+\end{figure}
+
+Here we implement and test the insert, search and delete functions of the skip list.
+
+\section{Time Complexity Analysis}
+Average: \\
+Insert: O(logn) \\
+Search: O(logn) \\
+Delete: O(logn)
+
+\end{document}
