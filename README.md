@@ -42,3 +42,6 @@
 
 ### lab7
 - hash
+
+### lab8
+- skip list
