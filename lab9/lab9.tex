@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage{amsmath}
+
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab9: Self-Organizing List}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Dec. $9^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\pagestyle{empty}
+\section{Introduction}
+In this lab, we will implement and test some functions of the self-organizing list with move to front (MTF).
+
+\section{Python Code for Self-Organizing List}
+\inputpython{lab9.py}{3}{61}
+Self-organizing list is a modified linked list. Each node in the list stores a value and its next node. Every time when a search is successfully applied, the element searched for will be move to the front and be the new header.
+
+\section{Test Example for Self-Organizing List}
+\inputpython{lab9.py}{63}{85}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{test.png}
+    \caption{Self-organizing list test result.}
+\end{figure}
+In the first test, we randomly searched for 3 items one by one and found that they were moved to the front. In the second test, we searched the same item for several times and found that the list stays the same. In the third test, we searched for a nonexisting item and found the list was unchanged. In the last test, we sequentially searched 0 to 9 and found that the first several elements are in [0,9] and are in decreasing order. All the results are reasonable and expected.
+
+\section{Competitive Analysis}
+MTF is 4-Competitive for self-organizing lists.
+
+
+\end{document}
