@@ -35,7 +35,7 @@
 - counting sort
 
 ### lab6
-- randomized seletion
+- randomized selection
 
 ### hw7
 - hash
@@ -45,3 +45,12 @@
 
 ### lab8
 - skip list
+
+### lab9
+- self-organizing list
+
+### lab10
+- dynamic programming (longest common subsequence)
+
+### lab11
+- Bellman Ford algorithm (shortest path and negative weight cycle)
