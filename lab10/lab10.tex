@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage{amsmath}
+
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab10: Longest Common Subsequence}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Dec. $15^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\pagestyle{empty}
+\section{Introduction}
+In this lab, we will implement a program to search for the longest common subsequence from two strings using brute force and dynamic programming algorithm.
+
+\section{Python Code for the LCS Problem}
+\inputpython{lab10.py}{1}{54}
+There are two main functions. LCS\_bf solves the LCS problem via brute force and LCS\_dp solves it by dynamic programming. For LCS\_bf, I generate all the subsequences, check if they are the subsequences for both two input strings X, Y and compare them to find the longest one. While for LCS\_dp, I first build a 2D table where each entry [i,j] stores the information for the LCS of X[1...i] and Y[1...j] and then complete it from bottom up by two for loops.
+
+\section{Test Example for the LCS Problem}
+\inputpython{lab10.py}{56}{59}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{test.png}
+    \caption{LCS problem test results.}
+\end{figure}
+Call the two functions to see the results.
+
+\section{Time Complexity}
+Brute force: $O(n2^m)$ \\
+Dynamic programming: $O(mn)$
+
+
+\end{document}
