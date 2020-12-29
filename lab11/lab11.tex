@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{pythonhighlight}
+\usepackage{amsmath}
+
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\title{
+    \textbf{\Huge ECE374 Fall2020} \\
+    \textbf{\Large Lab11: Bellman Ford Algorithm}
+    }
+
+\author{\large Name: Zhang Yichi 3180111309}
+
+\date{Dec. $23^{th}$ 2020}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\maketitle
+\pagestyle{empty}
+\section{Introduction}
+In this lab, we will implement a program to find all shortest-path lengths from a source $s\in V$ to all $v\in V$ or determine that a negative-weight cycle exists with Bellman Ford algorithm.
+
+\section{Python Code for the Bellman Ford Algorithm}
+\inputpython{lab11.py}{1}{31}
+With the first for loop, we update all the distances. With the second for loop, we update them another time, if there is something to update, it means that negative weight cycles are detected. 
+
+\section{Test Example for the LCS Problem}
+\inputpython{lab11.py}{33}{61}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{graph_nonwc.png}
+    \caption{Test results for graph without negative weight cycle with Bellman Ford algorithm.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{graph_nwc.png}
+    \caption{Test results for graph with negative weight cycle with modified Bellman Ford algorithm.}
+\end{figure}
+
+\section{Time Complexity}
+\inputpython{lab11.py}{10}{13}
+The outer loop is O(V). The inner loop is O(E). Therefore, the total time complexity for the Bellman Ford algorithm and the modified Bellman Ford algorithm are both O(VE).
+
+\end{document}
